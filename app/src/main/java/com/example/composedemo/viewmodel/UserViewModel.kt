@@ -30,7 +30,12 @@ class UserViewModel @Inject constructor(private val repository: UserRepository) 
     fun getAllUser() = viewModelScope.launch {
         isLoading.value = true
         val fetchUserListEntity = repository.getAllUser()
-        _userData.value = listOf(fetchUserListEntity)
+
+        // Filtra los usuarios para eliminar duplicados basados en el email
+        val uniqueUsers = fetchUserListEntity.results.distinctBy { it.email }
+
+        // Actualiza _userData con los usuarios únicos
+        _userData.value = listOf(UserModel(ArrayList(uniqueUsers), fetchUserListEntity.info))
     }.invokeOnCompletion {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({

@@ -249,7 +249,7 @@ fun UserDetailsScreen(
                     }
                 }
                 Divider(
-                    modifier = Modifier.padding(start = 0.dp),
+                    modifier = Modifier.padding(start = 60.dp),
                     color = Color.LightGray,
                     thickness = 1.dp
                 )
@@ -300,7 +300,7 @@ fun UserDetailsScreen(
                     }
                 }
                 Divider(
-                    modifier = Modifier.padding(start = 0.dp),
+                    modifier = Modifier.padding(start = 60.dp),
                     color = Color.LightGray,
                     thickness = 1.dp
                 )
@@ -351,7 +351,7 @@ fun UserDetailsScreen(
                     }
                 }
                 Divider(
-                    modifier = Modifier.padding(start = 0.dp),
+                    modifier = Modifier.padding(start = 60.dp),
                     color = Color.LightGray,
                     thickness = 1.dp
                 )
@@ -402,7 +402,7 @@ fun UserDetailsScreen(
                     }
                 }
                 Divider(
-                    modifier = Modifier.padding(start = 0.dp),
+                    modifier = Modifier.padding(start = 60.dp),
                     color = Color.LightGray,
                     thickness = 1.dp
                 )
@@ -456,7 +456,7 @@ fun UserDetailsScreen(
                     }
                 }
                 Divider(
-                    modifier = Modifier.padding(start = 0.dp),
+                    modifier = Modifier.padding(start = 60.dp),
                     color = Color.LightGray,
                     thickness = 1.dp
                 )

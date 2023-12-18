@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
@@ -33,6 +34,7 @@ import com.example.composedemo.theme.fontHeeboMedium
 import com.example.composedemo.theme.fontOswaldSemiBold
 import com.example.composedemo.utils.getUsername
 import com.example.composedemo.viewmodel.UserViewModel
+import java.util.*
 
 // Define un composable para la pantalla principal
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -55,7 +57,7 @@ fun HomeScreenPreview(
             TopAppBar(
                 title = {
                     Text(
-                        text = stringResource(R.string.app_name),
+                        text = context.getString(R.string.app_name).uppercase(Locale.ROOT),
                         fontFamily = fontOswaldSemiBold,
                         color = Color.Black
                     )
