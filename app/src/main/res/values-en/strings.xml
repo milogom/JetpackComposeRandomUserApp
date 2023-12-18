@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CONTACTOS</string>
+    <string name="app_name">Contactos</string>
     <string name="email">Email</string>
     <string name="phone">Teléfono</string>
     <string name="user_details">Detalles de Usuario</string>

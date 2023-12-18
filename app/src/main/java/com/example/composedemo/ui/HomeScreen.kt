@@ -94,7 +94,7 @@ fun HomeScreenPreview(
                         DropdownMenuItem(onClick = {
                             // Acción para "Buscar"
                             expanded.value = false
-                            // TODO: agregar la lógica para la opción de editar
+                            // TODO: agregar la lógica para la opción de buscar
                         }) {
                             Text(stringResource(R.string.search))
                         }
