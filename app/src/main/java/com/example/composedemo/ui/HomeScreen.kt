@@ -8,10 +8,14 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -22,8 +26,8 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
@@ -47,7 +51,9 @@ fun HomeScreenPreview(
     val isLoading = viewModel.isLoading.value
     val userList = viewModel.userData.collectAsState().value
 
-    val expanded = remember { mutableStateOf(false) }
+    val isSearchVisible by viewModel.isSearchVisible.collectAsState()
+
+    val searchQuery by viewModel.searchQuery.collectAsState()
 
 
     // Scaffold utilizado para proporcionar una estructura básica de material design,
@@ -55,6 +61,8 @@ fun HomeScreenPreview(
     Scaffold(
         topBar = {
             TopAppBar(
+                elevation = 0.dp,
+                backgroundColor = Color.White,
                 title = {
                     Text(
                         text = context.getString(R.string.app_name).uppercase(Locale.ROOT),
@@ -81,46 +89,77 @@ fun HomeScreenPreview(
                 },
                 actions = {
                     // Ícono de menú desplegable
-                    IconButton(onClick = { expanded.value = true }) {
+                    IconButton(onClick = {
+                        viewModel.toggleSearchVisibility()
+                    }) {
                         Icon(
                             imageVector = Icons.Filled.MoreVert,
                             contentDescription = "Menu"
                         )
                     }
 
-                    // Menú desplegable
-                    DropdownMenu(
-                        expanded = expanded.value,
-                        onDismissRequest = { expanded.value = false }
-                    ) {
-                        DropdownMenuItem(onClick = {
-                            // Acción para "Buscar"
-                            expanded.value = false
-                            // TODO: agregar la lógica para la opción de buscar
-                        }) {
-                            Text(stringResource(R.string.search))
-                        }
-                    }
-                },
-                elevation = 0.dp,
-                backgroundColor = Color.White,
+                }, // fin de actions
             )
         },
     ) {
         // El contenido se coloca aquí dentro del lambda del Scaffold
-        if (isLoading) {
-            ProgressBarComponent()
-        } else {
-            LazyColumn(
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                userList.forEach { user ->
-                    items(user.results.size) {
-                        UserRow(
-                            user = user.results[it],
-                            viewModel = viewModel,
-                            navController = navController
-                        )
+
+        Column(
+            modifier = Modifier.padding(it)
+        ) {
+            // Campo de búsqueda
+            if (isSearchVisible) {
+                TextField(
+                    value = searchQuery,
+                    onValueChange = { query -> viewModel.setSearchQuery(query) },
+                    colors = TextFieldDefaults.textFieldColors(
+                        textColor = Color.Black,
+                        backgroundColor = Color.White,
+                        cursorColor = Color.Black,
+                        focusedIndicatorColor = Color.LightGray,
+                        unfocusedIndicatorColor = Color.LightGray,
+                        focusedLabelColor = Color.LightGray,
+                        unfocusedLabelColor = Color.LightGray
+                    ),
+                    label = { Text(stringResource(id = R.string.search)) },
+                    placeholder = { Text(stringResource(id = R.string.enter_name_or_email)) },
+                    singleLine = true,
+                    leadingIcon = {
+                        Icon(Icons.Filled.Search, contentDescription = "Ícono de búsqueda")
+                    },
+                    keyboardOptions = KeyboardOptions.Default.copy(
+                        imeAction = ImeAction.Search
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onSearch = {
+                            // Aquí puedes definir lo que ocurre cuando se presiona 'Buscar' en el teclado
+                            // Por ejemplo, cerrar el teclado
+                            defaultKeyboardAction(ImeAction.Search)
+                        }
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(100.dp, 0.dp, 0.dp, 0.dp)
+                )
+            }
+
+            // A continuación, muestra la lista de usuarios, que ahora reaccionará al cambio en searchQuery
+            val userListToShow by if (searchQuery.isBlank()) {
+                viewModel.userData // Lista completa si la consulta de búsqueda está vacía
+            } else {
+                viewModel.filteredUserData // Lista filtrada si hay una consulta de búsqueda
+            }.collectAsState()
+
+            if (isLoading) {
+                ProgressBarComponent()
+            } else {
+
+                val filteredUserList by viewModel.filteredUserData.collectAsState()
+                LazyColumn(modifier = Modifier.fillMaxWidth()) {
+                    userListToShow.forEach { userModel ->
+                        items(userModel.results) { user ->
+                            UserRow(user, viewModel, navController)
+                        }
                     }
                 }
             }
@@ -128,13 +167,14 @@ fun HomeScreenPreview(
     }
 }
 
+
 // Composable que define cómo se muestra cada fila de usuario en la lista
 @Composable
 fun UserRow(user: User, viewModel: UserViewModel, navController: NavHostController) {
     // Define una tarjeta (Card) para cada usuario
     Card(
         modifier = Modifier
-            .padding(0.dp, 0.dp, 0.dp, 0.dp)
+            .padding(0.dp)
             .fillMaxWidth()
             // Acción al hacer clic en la tarjeta
             .clickable(indication = rememberRipple(bounded = true),
@@ -147,7 +187,7 @@ fun UserRow(user: User, viewModel: UserViewModel, navController: NavHostControll
     ) {
         Row(
             modifier = Modifier
-                .padding(20.dp, 10.dp, 1.dp, 1.dp)
+                .padding(20.dp, 15.dp, 1.dp, 11.dp)
                 .fillMaxWidth()
         ) {
             // Muestra la imagen del usuario
@@ -209,3 +249,5 @@ fun UserRow(user: User, viewModel: UserViewModel, navController: NavHostControll
 
     }
 }
+
+

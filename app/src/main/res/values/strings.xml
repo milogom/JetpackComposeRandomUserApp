@@ -14,4 +14,5 @@
     <string name="search">Buscar</string>
     <string name="favourite">Añadir a favoritos</string>
     <string name="favourites_added">Se ha añadido a tus favoritos</string>
+    <string name="enter_name_or_email">Introduzca nombre o email...</string>
 </resources>
