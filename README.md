@@ -3,28 +3,24 @@ Miguel Angel Lozano Gomez.
 
 This Android Application is built using Jetpack Compose and MVVM Architecture, and accesses the [Random User Generator Api](https://randomuser.me/documentation) for fetching data, showing user location in Google Maps (based on random coordinates, so don't expect address and gps location match)
 
-https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/1679c4dc-eac9-4ce2-a0e5-a517873acd71
-
+https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/c35796df-1a87-4a0f-b316-47e2cfe3f4e6
 
 # Built With
-+ Jetpack Compose for UI
-+ MVVM Architecture
-+ Modern Splash Screen
++ Jetpack Compose for UI.
++ MVVM Architecture.
++ Modern custom logo splash screen and app icon. 
 + Retrofit (for API Calling).
 + Duplicated registers control.
-+ Hilt Dependency Injection.
-+ Coil (for Image Loading).
-+ Kotlin Coroutines.
-+ Sealed Class.
++ Functional real time search engine with clean function when close
++ Hilt dependency injection.
++ Coil (for image loading and caching).
++ Kotlin coroutines.
++ Sealed class.
 + Google Maps API.
 + Infinite scroll (not paged, and limited to 500 radom users).
 + Screens navigation.
 + String language translations for labels, and database strings responses (Eg. gender = male).
-+ Customized Fonts and Styles.
-
-
-
-+ App Customized Launch Icon.
++ Customized fonts and styles.
 + Utils and Globals classes for converting dates, storing constants, database strings response translation, etc.
 
 # Notes
@@ -36,13 +32,15 @@ https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/1679c4dc-e
 <img width="655" alt="image" src="https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/a4fc4367-4801-47bd-9907-e6fe08184ff2">
 
 # Results
-<img width="300" alt="image" src="https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/4abc7d24-2cd7-4c0c-9100-a8acdce66e3f">
-<img width="300" alt="image" src="https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/df01e6ce-32a6-47b5-85f5-1286c7148e43">
+<img width="350" alt="image" src="https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/72179661-342a-49f5-8055-2f4e358a9b45">
+<img width="350" alt="image" src="https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/6b886cc5-b419-487c-bac7-af16f059c782">
+<img width="350" alt="image" src="https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/425da3c2-9182-4ec3-96d5-b38ff35b2ede">
+<img width="350" alt="image" src="https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/af06d9ba-af71-448a-bf99-cac8de1b3e3e">
+
+
 
 # Pending
-+ Some database unit test
-+ Functional search engine
-
++ Database unit test
 
 
 
