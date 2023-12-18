@@ -1,7 +1,7 @@
 # Jetpack Compose MVVM Random User App.
 Miguel Angel Lozano Gomez.
 
-This Android Application is built using Jetpack Compose and MVVM Architecture, and accesses the [Random User Generator Api](https://randomuser.me/documentation) for fetching data, showing user location in Google Maps (based on random coordinates, so don't expect same address and gps location)
+This Android Application is built using Jetpack Compose and MVVM Architecture, and accesses the [Random User Generator Api](https://randomuser.me/documentation) for fetching data, showing user location in Google Maps (based on random coordinates, so don't expect address and gps location match)
 
 https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/1679c4dc-eac9-4ce2-a0e5-a517873acd71
 
