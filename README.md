@@ -11,6 +11,7 @@ https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/1679c4dc-e
 + MVVM Architecture
 + Modern Splash Screen
 + Retrofit (for API Calling).
++ Duplicated registers control.
 + Hilt Dependency Injection.
 + Coil (for Image Loading).
 + Kotlin Coroutines.
