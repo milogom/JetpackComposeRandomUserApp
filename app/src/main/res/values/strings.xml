@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">CONTACTOS</string>
+    <string name="email">Email</string>
+    <string name="phone">Teléfono</string>
+    <string name="user_details">Detalles de Usuario</string>
+    <string name="name_surname">Nombre y apellidos</string>
+    <string name="gender">Género</string>
+    <string name="registered_date">Fecha de registro</string>
+    <string name="coordinates">Coordenadas</string>
+    <string name="address">Dirección</string>
+    <string name="male">Masculino</string>
+    <string name="female">Femenino</string>
+    <string name="indeterminate">Indeterminado</string>
+    <string name="search">Buscar</string>
+    <string name="favourite">Añadir a favoritos</string>
+    <string name="favourites_added">Se ha añadido a tus favoritos</string>
+</resources>
