@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Contactos</string>
+    <string name="app_name">Contacts</string>
     <string name="email">Email</string>
-    <string name="phone">Teléfono</string>
-    <string name="user_details">Detalles de Usuario</string>
-    <string name="name_surname">Nombre y apellidos</string>
-    <string name="gender">Género</string>
-    <string name="registered_date">Fecha de registro</string>
-    <string name="coordinates">Coordenadas</string>
-    <string name="address">Dirección</string>
-    <string name="male">Masculino</string>
-    <string name="female">Femenino</string>
-    <string name="indeterminate">Indeterminado</string>
-    <string name="search">Buscar</string>
-    <string name="favourite">Añadir a favoritos</string>
-    <string name="favourites_added">Se ha añadido a tus favoritos</string>
+    <string name="phone">Phone</string>
+    <string name="user_details">User details</string>
+    <string name="name_surname">Name and surname</string>
+    <string name="gender">Gender</string>
+    <string name="registered_date">Registered date</string>
+    <string name="coordinates">Coordinates</string>
+    <string name="address">Address</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="indeterminate">Undetermined</string>
+    <string name="search">Search</string>
+    <string name="favourite">Add to favourites</string>
+    <string name="favourites_added">Added to favourites successfuly</string>
 </resources>
