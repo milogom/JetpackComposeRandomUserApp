@@ -3,7 +3,8 @@ Miguel Angel Lozano Gomez.
 
 This Android Application is built using Jetpack Compose and MVVM Architecture, and accesses the [Random User Generator Api](https://randomuser.me/documentation) for fetching data, showing user location in Google Maps (based on random coordinates, so don't expect same address and gps location)
 
-https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/1a22aadf-c720-413b-aa6f-990c1c586d53
+https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/1679c4dc-eac9-4ce2-a0e5-a517873acd71
+
 
 # Built With
 + Jetpack Compose for UI
@@ -19,6 +20,9 @@ https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/1a22aadf-c
 + Screens navigation.
 + String language translations for labels, and database strings responses (Eg. gender = male).
 + Customized Fonts and Styles.
+
+
+
 + App Customized Launch Icon.
 + Utils and Globals classes for converting dates, storing constants, database strings response translation, etc.
 
@@ -33,7 +37,8 @@ https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/1a22aadf-c
 Results:
 
 <img width="300" alt="image" src="https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/4abc7d24-2cd7-4c0c-9100-a8acdce66e3f">
-<img width="300" alt="image" src="https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/268933b7-d679-4669-aebf-5ed372d5295d">
+<img width="300" alt="image" src="https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/df01e6ce-32a6-47b5-85f5-1286c7148e43">
+
 
 
 
