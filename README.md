@@ -34,8 +34,7 @@ https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/1679c4dc-e
 # Figma Design Requirements
 <img width="655" alt="image" src="https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/a4fc4367-4801-47bd-9907-e6fe08184ff2">
 
-Results:
-
+#Results
 <img width="300" alt="image" src="https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/4abc7d24-2cd7-4c0c-9100-a8acdce66e3f">
 <img width="300" alt="image" src="https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/df01e6ce-32a6-47b5-85f5-1286c7148e43">
 
