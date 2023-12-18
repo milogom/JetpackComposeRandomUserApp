@@ -15,5 +15,5 @@
     <string name="search">Search</string>
     <string name="favourite">Add to favourites</string>
     <string name="favourites_added">Added to favourites successfuly</string>
-    <string name="enter_name_or_email">Introduzca nombre o email...</string>
+    <string name="enter_name_or_email">Enter name or email...</string>
 </resources>
