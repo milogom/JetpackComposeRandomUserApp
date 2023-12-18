@@ -39,6 +39,10 @@ https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/1679c4dc-e
 <img width="300" alt="image" src="https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/4abc7d24-2cd7-4c0c-9100-a8acdce66e3f">
 <img width="300" alt="image" src="https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/df01e6ce-32a6-47b5-85f5-1286c7148e43">
 
+# Pending
++ Some database unit test
++ Functional search engine
+
 
 
 
