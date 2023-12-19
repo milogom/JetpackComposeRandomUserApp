@@ -8,6 +8,7 @@ https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/c35796df-1
 # Built With
 + Jetpack Compose for UI.
 + MVVM Architecture.
++ Clean code.
 + Modern custom logo splash screen and app icon. 
 + Retrofit (for API Calling).
 + Duplicated registers control.
@@ -21,6 +22,7 @@ https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/c35796df-1
 + Screens navigation.
 + String language translations for labels, and database strings responses (Eg. gender = male).
 + Customized fonts and styles.
++ Customized "Compostables" folder with reusable compostables.
 + Utils and Globals classes for converting dates, storing constants, database strings response translation, etc.
 
 # Notes
