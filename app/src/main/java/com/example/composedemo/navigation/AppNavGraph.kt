@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.composedemo.navigation.AppScreens
-import com.example.composedemo.ui.HomeScreenPreview
+import com.example.composedemo.ui.HomeScreenContent
 import com.example.composedemo.ui.UserDetailsPreview
 import com.example.composedemo.viewmodel.UserViewModel
 
@@ -22,7 +22,7 @@ fun SetupNavGraph(
         // Define una pantalla composable para la ruta "Home"
         composable(route = AppScreens.Home.route) {
             // HomeScreenPreview es el composable que se muestra para la pantalla de inicio
-            HomeScreenPreview(
+            HomeScreenContent(
                 navController = navController, // Pasa el NavController para manejar la navegación
                 viewModel = viewModel, // Pasa el ViewModel para utilizar los datos
                 context = context // Pasa el Contexto actual

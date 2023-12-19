@@ -45,7 +45,7 @@ fun UserDetailsPreview(
     context: Context,
 ) {
     viewModel.user?.let {
-        UserDetailsScreen(
+        UserDetailsScreenContent(
             navController = navController,
             user = it,
             context = context
@@ -55,7 +55,7 @@ fun UserDetailsPreview(
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun UserDetailsScreen(
+fun UserDetailsScreenContent(
     navController: NavHostController,
     user: User,
     context: Context
@@ -81,9 +81,7 @@ fun UserDetailsScreen(
         )
     }
 
-    Box(
-
-    )
+    Box()
     {
         Scaffold(
             backgroundColor = Color.Transparent,
