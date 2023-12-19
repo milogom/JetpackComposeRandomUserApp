@@ -24,8 +24,7 @@ import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.composedemo.R
 import com.example.composedemo.model.User
-import com.example.composedemo.theme.fontHeeboMedium
-import com.example.composedemo.theme.fontOswaldSemiBold
+import com.example.composedemo.theme.*
 import com.example.composedemo.utils.*
 import com.example.composedemo.viewmodel.UserViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -123,11 +122,12 @@ fun UserDetailsTopBar(navController: NavHostController, user: User) {
 fun UserDetailsBody(user: User) {
     Column(
         modifier = Modifier
-            .padding(20.dp, 95.dp, 20.dp, 0.dp)
+            .padding(20.dp, 95.dp, 10.dp, 0.dp)
     ) {
         UserProfileHeader(user = user)
         Column(
             modifier = Modifier
+                .padding(10.dp, 15.dp, 0.dp, 0.dp)
                 .verticalScroll(rememberScrollState())
         ) {
 
@@ -183,16 +183,18 @@ fun UserProfileHeader(user: User) {
             painter = painterResource(id = R.drawable.baseline_photo_camera_24),
             contentDescription = "Camera Icon",
             modifier = Modifier
-                .size(25.dp)
+                .size(20.dp)
                 .align(Alignment.Bottom)
+                .offset(y = (-10).dp)
         )
         Spacer(modifier = Modifier.weight(1f))
         Image(
             painter = painterResource(id = R.drawable.baseline_edit_24),
             contentDescription = "Camera Icon",
             modifier = Modifier
-                .size(25.dp)
+                .size(20.dp)
                 .align(Alignment.Bottom)
+                .offset(y = (-10).dp)
         )
     }
 }
@@ -201,7 +203,7 @@ fun UserProfileHeader(user: User) {
 fun UserInfoSection(iconId: Int, title: String, content: String) {
     Card(
         modifier = Modifier
-            .padding(10.dp, 0.dp, 0.dp, 0.dp)
+            .padding(8.dp, 0.dp, 0.dp, 0.dp)
             .fillMaxWidth(),
         shape = RectangleShape,
         elevation = 0.dp,
@@ -221,23 +223,15 @@ fun UserInfoSection(iconId: Int, title: String, content: String) {
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(27.dp, 5.dp, 0.dp, 15.dp),
+                    .padding(30.dp, 10.dp, 0.dp, 0.dp),
                 verticalArrangement = Arrangement.spacedBy(6.dp)
             ) {
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.caption,
-                    fontFamily = fontHeeboMedium,
-                    color = Color.LightGray
-                )
-                Text(
-                    text = content,
-                    maxLines = 2,
-                    style = MaterialTheme.typography.body1,
-                    fontFamily = fontHeeboMedium
-                )
+                CardTexts(label = title, content = content)
                 Divider(
-                    Modifier.size(1.dp)
+                    modifier = Modifier
+                        .padding(0.dp),
+                    color = Color.LightGray,
+                    thickness = 1.dp
                 )
             }
         }
@@ -248,7 +242,6 @@ fun UserInfoSection(iconId: Int, title: String, content: String) {
 fun UserMapSection(iconId: Int, user: User) {
     var googleMap: GoogleMap? by remember { mutableStateOf(null) }
     val latLng = LatLng(user.location.getUserLatitude(), user.location.getUserLongitude())
-
     Card(
         modifier = Modifier
             .fillMaxWidth(),
@@ -288,39 +281,30 @@ fun UserMapSection(iconId: Int, user: User) {
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(200.dp)
+                        .height(150.dp)
                 )
-
-                Text(
-                    text = stringResource(id = R.string.address),
-                    style = MaterialTheme.typography.caption,
-                    fontFamily = fontHeeboMedium,
-                    color = Color.LightGray
-                )
-                Text(
-                    text = user.location.getUserLocation(),
-                    maxLines = 2,
-                    style = MaterialTheme.typography.body1,
-                    fontFamily = fontHeeboMedium
-                )
-
-                Text(
-                    text = stringResource(id = R.string.coordinates),
-                    style = MaterialTheme.typography.caption,
-                    fontFamily = fontHeeboMedium,
-                    color = Color.LightGray
-                )
-                Text(
-                    text = user.location.getUserCoordinates(),
-                    maxLines = 2,
-                    style = MaterialTheme.typography.body1,
-                    fontFamily = fontHeeboMedium
-                )
-
-
+                CardTexts(stringResource(id = R.string.address), user.location.getUserLocation())
+                CardTexts(stringResource(id = R.string.coordinates), user.location.getUserCoordinates())
             }
         }
     }
 
 
+}
+
+@Composable
+fun CardTexts(label: String, content: String) {
+    Text(
+        text = label,
+        style = MaterialTheme.typography.caption,
+        fontFamily = fontOpenSansMedium,
+        color = Color.DarkGray
+    )
+    Text(
+        text = content,
+        maxLines = 2,
+        style = MaterialTheme.typography.body1,
+        fontFamily = fontOpenSansSemibold,
+        color = Color.Black
+    )
 }
