@@ -4,74 +4,58 @@ package com.example.composedemo.ui
 import android.annotation.SuppressLint
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.composedemo.R
 import com.example.composedemo.model.User
 import com.example.composedemo.theme.*
+import com.example.composedemo.ui.screens.composables.UserInfoSection
+import com.example.composedemo.ui.screens.composables.UserMapSection
+import com.example.composedemo.ui.screens.composables.UserProfileHeader
 import com.example.composedemo.utils.*
 import com.example.composedemo.viewmodel.UserViewModel
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapView
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import java.util.*
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun UserDetailsScreenContent(
     navController: NavHostController,
     viewModel: UserViewModel
 ) {
-    viewModel.user?.let {
-        UserDetailsContent(
-            navController = navController,
-            user = it,
-        )
+    viewModel.user?.let { user ->
+        SetHeaderImage()
+        Scaffold(
+            backgroundColor = Color.Transparent,
+            topBar = { UserDetailsTopBar(navController, user) }
+        ) {
+            UserDetailsBody(user)
+        }
     }
 }
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun UserDetailsContent(
-    navController: NavHostController,
-    user: User,
-) {
-
+fun SetHeaderImage() {
     Image(
         painter = rememberAsyncImagePainter(R.drawable.sunset),
         contentDescription = "Imagen de cabecera",
         modifier = Modifier
-            .padding(0.dp, 0.dp, 0.dp, 0.dp)
             .fillMaxWidth() // Hace que la imagen ocupe el ancho completo
             .height(180.dp),
         contentScale = ContentScale.Crop
     )
-
-    Scaffold(
-        backgroundColor = Color.Transparent,
-        topBar = { UserDetailsTopBar(navController, user) }
-    ) {
-        UserDetailsBody(user)
-    }
 }
 
+// Composable de la TopAppBar del scaffold
 @Composable
 fun UserDetailsTopBar(navController: NavHostController, user: User) {
     TopAppBar(
@@ -117,7 +101,7 @@ fun UserDetailsTopBar(navController: NavHostController, user: User) {
     )
 }
 
-
+// Composable del body del scaffold
 @Composable
 fun UserDetailsBody(user: User) {
     Column(
@@ -130,7 +114,6 @@ fun UserDetailsBody(user: User) {
                 .padding(start =  10.dp)
                 .verticalScroll(rememberScrollState())
         ) {
-
             UserInfoSection(
                 iconId = R.drawable.baseline_account_circle_24,
                 title = stringResource(id = R.string.name_surname),
@@ -162,170 +145,4 @@ fun UserDetailsBody(user: User) {
             )
         }
     }
-}
-
-@Composable
-fun UserProfileHeader(user: User) {
-    Row(
-        modifier = Modifier
-            .padding(end = 10.dp)
-    ) {
-        Image(
-            painter = rememberAsyncImagePainter(model = user.picture.large),
-            contentDescription = "User Image",
-            modifier = Modifier
-                .size(80.dp)
-                .clip(CircleShape)
-                .border(4.dp, Color.White, CircleShape)
-        )
-        Spacer(modifier = Modifier.weight(7f))
-        Image(
-            painter = painterResource(id = R.drawable.baseline_photo_camera_24),
-            contentDescription = "Camera Icon",
-            modifier = Modifier
-                .size(20.dp)
-                .align(Alignment.Bottom)
-                .offset(y = (-4).dp)
-        )
-        Spacer(modifier = Modifier.weight(1f))
-        Image(
-            painter = painterResource(id = R.drawable.baseline_edit_24),
-            contentDescription = "Edit Icon",
-            modifier = Modifier
-                .size(20.dp)
-                .align(Alignment.Bottom)
-                .offset(y = (-4).dp)
-        )
-    }
-}
-
-@Composable
-fun UserInfoSection(iconId: Int, title: String, content: String) {
-    Card(
-        modifier = Modifier
-            .padding(8.dp, 15.dp, 0.dp, 0.dp)
-            .fillMaxWidth(),
-        shape = RectangleShape,
-        elevation = 0.dp,
-        backgroundColor = Color.Transparent
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            Image(
-                painter = painterResource(id = iconId),
-                contentDescription = "Icon",
-                modifier = Modifier.align(Alignment.CenterVertically),
-                colorFilter = ColorFilter.tint(Color.Black)
-            )
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(start = 30.dp),
-                verticalArrangement = Arrangement.spacedBy(6.dp)
-            ) {
-                CardTexts(label = title, content = content)
-                Divider(
-                    modifier = Modifier
-                        .padding(0.dp),
-                    color = Color.LightGray,
-                    thickness = 1.dp
-                )
-            }
-        }
-    }
-}
-
-@Composable
-fun UserMapSection(iconId: Int, user: User) {
-    var googleMap: GoogleMap? by remember { mutableStateOf(null) }
-    val latLng = LatLng(user.location.getUserLatitude(), user.location.getUserLongitude())
-    Card(
-        modifier = Modifier
-            .fillMaxWidth(),
-        shape = RectangleShape,
-        elevation = 0.dp,
-        backgroundColor = Color.Transparent
-    ) {
-        Row(
-            modifier = Modifier
-                .padding(10.dp)
-                .fillMaxWidth()
-        ) {
-
-            Image(
-                painter = painterResource(id = iconId),
-                contentDescription = "Icon",
-                modifier = Modifier.align(Alignment.CenterVertically),
-                colorFilter = ColorFilter.tint(Color.Black)
-            )
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(27.dp, 5.dp, 0.dp, 15.dp),
-                verticalArrangement = Arrangement.spacedBy(6.dp)
-            ) {
-                SimpleLabelText(stringResource(id = R.string.address))
-
-                AndroidView(
-                    factory = { ctx ->
-                        MapView(ctx).apply {
-                            onCreate(null)
-                            getMapAsync {
-                                googleMap = it
-                                it.moveCamera(
-                                    CameraUpdateFactory.newLatLngZoom(latLng, 10f)
-                                )
-                                it.addMarker(MarkerOptions().position(latLng))
-                            }
-                        }
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(150.dp)
-                )
-                SimpleContentText(content = user.location.getUserLocation())
-                SimpleContentText(content = user.location.getUserCoordinates())
-            }
-        }
-    }
-}
-
-@Composable
-fun SimpleLabelText(label: String) {
-    Text(
-        text = label,
-        style = MaterialTheme.typography.caption,
-        fontFamily = fontOpenSansRegular,
-        color = Color.DarkGray
-    )
-}
-
-@Composable
-fun SimpleContentText(content: String) {
-    Text(
-        text = content,
-        maxLines = 2,
-        style = MaterialTheme.typography.body1,
-        fontFamily = fontOpenSansSemibold,
-        color = Color.Black
-    )
-}
-
-@Composable
-fun CardTexts(label: String, content: String) {
-    Text(
-        text = label,
-        style = MaterialTheme.typography.caption,
-        fontFamily = fontOpenSansRegular,
-        color = Color.DarkGray
-    )
-    Text(
-        text = content,
-        maxLines = 2,
-        style = MaterialTheme.typography.body1,
-        fontFamily = fontOpenSansSemibold,
-        color = Color.Black
-    )
 }

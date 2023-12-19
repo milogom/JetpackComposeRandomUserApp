@@ -1,5 +1,4 @@
 // Importaciones necesarias para la navegación y la UI
-import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -13,19 +12,16 @@ import com.example.composedemo.viewmodel.UserViewModel
 @Composable
 fun SetupNavGraph(
     navController: NavHostController, // Controlador de navegación para manejar la navegación entre pantallas
-    viewModel: UserViewModel, // ViewModel para acceder y manejar los datos de usuario
-    context: Context // Contexto de la aplicación o actividad
+    viewModel: UserViewModel // ViewModel para acceder y manejar los datos de usuario
 ) {
     // NavHost define el contenedor de navegación y especifica la pantalla de inicio
     NavHost(navController = navController, startDestination = AppScreens.Home.route) {
 
         // Define una pantalla composable para la ruta "Home"
         composable(route = AppScreens.Home.route) {
-            // HomeScreenPreview es el composable que se muestra para la pantalla de inicio
             HomeScreenContent(
-                navController = navController, // Pasa el NavController para manejar la navegación
-                viewModel = viewModel, // Pasa el ViewModel para utilizar los datos
-                context = context // Pasa el Contexto actual
+                navController = navController,
+                viewModel = viewModel,
             )
         }
 
@@ -33,8 +29,8 @@ fun SetupNavGraph(
         composable(route = AppScreens.Details.route) {
             // UserDetailsPreview es el composable que se muestra para la pantalla de detalles
             UserDetailsScreenContent(
-                navController = navController, // Pasa el NavController
-                viewModel = viewModel // Pasa el ViewModel
+                navController = navController,
+                viewModel = viewModel
             )
         }
 
