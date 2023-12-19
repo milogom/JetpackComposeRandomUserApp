@@ -60,7 +60,7 @@ fun UserDetailsContent(
         modifier = Modifier
             .padding(0.dp, 0.dp, 0.dp, 0.dp)
             .fillMaxWidth() // Hace que la imagen ocupe el ancho completo
-            .height(200.dp),
+            .height(180.dp),
         contentScale = ContentScale.Crop
     )
 
@@ -122,12 +122,12 @@ fun UserDetailsTopBar(navController: NavHostController, user: User) {
 fun UserDetailsBody(user: User) {
     Column(
         modifier = Modifier
-            .padding(20.dp, 95.dp, 10.dp, 0.dp)
+            .padding(15.dp, 80.dp, 10.dp, 0.dp)
     ) {
         UserProfileHeader(user = user)
         Column(
             modifier = Modifier
-                .padding(10.dp, 15.dp, 0.dp, 0.dp)
+                .padding(start =  10.dp)
                 .verticalScroll(rememberScrollState())
         ) {
 
@@ -174,27 +174,27 @@ fun UserProfileHeader(user: User) {
             painter = rememberAsyncImagePainter(model = user.picture.large),
             contentDescription = "User Image",
             modifier = Modifier
-                .size(100.dp)
+                .size(80.dp)
                 .clip(CircleShape)
                 .border(4.dp, Color.White, CircleShape)
         )
-        Spacer(modifier = Modifier.weight(5f))
+        Spacer(modifier = Modifier.weight(7f))
         Image(
             painter = painterResource(id = R.drawable.baseline_photo_camera_24),
             contentDescription = "Camera Icon",
             modifier = Modifier
                 .size(20.dp)
                 .align(Alignment.Bottom)
-                .offset(y = (-10).dp)
+                .offset(y = (-4).dp)
         )
         Spacer(modifier = Modifier.weight(1f))
         Image(
             painter = painterResource(id = R.drawable.baseline_edit_24),
-            contentDescription = "Camera Icon",
+            contentDescription = "Edit Icon",
             modifier = Modifier
                 .size(20.dp)
                 .align(Alignment.Bottom)
-                .offset(y = (-10).dp)
+                .offset(y = (-4).dp)
         )
     }
 }
@@ -203,7 +203,7 @@ fun UserProfileHeader(user: User) {
 fun UserInfoSection(iconId: Int, title: String, content: String) {
     Card(
         modifier = Modifier
-            .padding(8.dp, 0.dp, 0.dp, 0.dp)
+            .padding(8.dp, 15.dp, 0.dp, 0.dp)
             .fillMaxWidth(),
         shape = RectangleShape,
         elevation = 0.dp,
@@ -211,7 +211,6 @@ fun UserInfoSection(iconId: Int, title: String, content: String) {
     ) {
         Row(
             modifier = Modifier
-                .padding(0.dp)
                 .fillMaxWidth()
         ) {
             Image(
@@ -223,7 +222,7 @@ fun UserInfoSection(iconId: Int, title: String, content: String) {
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(30.dp, 10.dp, 0.dp, 0.dp),
+                    .padding(start = 30.dp),
                 verticalArrangement = Arrangement.spacedBy(6.dp)
             ) {
                 CardTexts(label = title, content = content)
@@ -254,6 +253,7 @@ fun UserMapSection(iconId: Int, user: User) {
                 .padding(10.dp)
                 .fillMaxWidth()
         ) {
+
             Image(
                 painter = painterResource(id = iconId),
                 contentDescription = "Icon",
@@ -266,6 +266,8 @@ fun UserMapSection(iconId: Int, user: User) {
                     .padding(27.dp, 5.dp, 0.dp, 15.dp),
                 verticalArrangement = Arrangement.spacedBy(6.dp)
             ) {
+                SimpleLabelText(stringResource(id = R.string.address))
+
                 AndroidView(
                     factory = { ctx ->
                         MapView(ctx).apply {
@@ -283,13 +285,32 @@ fun UserMapSection(iconId: Int, user: User) {
                         .fillMaxWidth()
                         .height(150.dp)
                 )
-                CardTexts(stringResource(id = R.string.address), user.location.getUserLocation())
-                CardTexts(stringResource(id = R.string.coordinates), user.location.getUserCoordinates())
+                SimpleContentText(content = user.location.getUserLocation())
+                SimpleContentText(content = user.location.getUserCoordinates())
             }
         }
     }
+}
 
+@Composable
+fun SimpleLabelText(label: String) {
+    Text(
+        text = label,
+        style = MaterialTheme.typography.caption,
+        fontFamily = fontOpenSansRegular,
+        color = Color.DarkGray
+    )
+}
 
+@Composable
+fun SimpleContentText(content: String) {
+    Text(
+        text = content,
+        maxLines = 2,
+        style = MaterialTheme.typography.body1,
+        fontFamily = fontOpenSansSemibold,
+        color = Color.Black
+    )
 }
 
 @Composable
@@ -297,7 +318,7 @@ fun CardTexts(label: String, content: String) {
     Text(
         text = label,
         style = MaterialTheme.typography.caption,
-        fontFamily = fontOpenSansMedium,
+        fontFamily = fontOpenSansRegular,
         color = Color.DarkGray
     )
     Text(
