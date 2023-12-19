@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.composedemo.navigation.AppScreens
 import com.example.composedemo.ui.HomeScreenContent
-import com.example.composedemo.ui.UserDetailsContent
+import com.example.composedemo.ui.UserDetailsScreenContent
 import com.example.composedemo.viewmodel.UserViewModel
 
 // Define una función composable para configurar la navegación en la aplicación
@@ -32,10 +32,9 @@ fun SetupNavGraph(
         // Define otra pantalla composable para la ruta "Details"
         composable(route = AppScreens.Details.route) {
             // UserDetailsPreview es el composable que se muestra para la pantalla de detalles
-            UserDetailsContent(
+            UserDetailsScreenContent(
                 navController = navController, // Pasa el NavController
-                viewModel = viewModel, // Pasa el ViewModel
-                context = context // Pasa el Contexto
+                viewModel = viewModel // Pasa el ViewModel
             )
         }
 

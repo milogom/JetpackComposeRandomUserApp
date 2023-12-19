@@ -1,6 +1,8 @@
 package com.example.composedemo.utils
 
 import android.content.Context
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import com.example.composedemo.R
 import java.text.SimpleDateFormat
 import java.util.*
@@ -12,11 +14,12 @@ fun formatToShortDate(dateString: String): String {
     return outputFormat.format(date ?: return "")
 }
 
-fun showGenderTranslated(context: Context, gender: String): String {
+@Composable
+fun showGenderTranslated(gender: String): String {
     return when (gender) {
-        "male" -> context.getString(R.string.male)
-        "female" -> context.getString(R.string.female)
-        else -> context.getString(R.string.indeterminate)
+        "male" -> stringResource(id = R.string.male)
+        "female" -> stringResource(id = R.string.female)
+        else -> stringResource(id = R.string.indeterminate)
     }
 }
 
