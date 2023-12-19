@@ -43,7 +43,7 @@ import java.util.*
 // Define un composable para la pantalla principal
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun HomeScreenPreview(
+fun HomeScreenContent(
     navController: NavHostController,
     viewModel: UserViewModel,
     context: Context

@@ -39,7 +39,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import java.util.*
 
 @Composable
-fun UserDetailsPreview(
+fun UserDetailsContent(
     navController: NavHostController,
     viewModel: UserViewModel,
     context: Context,
