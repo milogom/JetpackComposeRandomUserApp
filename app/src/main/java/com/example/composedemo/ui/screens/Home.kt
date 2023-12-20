@@ -2,9 +2,8 @@ package com.example.composedemo.ui
 
 // Importaciones necesarias
 import android.annotation.SuppressLint
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
+import android.app.Activity
+import android.content.Context
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -12,14 +11,13 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
@@ -37,14 +35,15 @@ fun HomeScreenContent(
     navController: NavHostController,
     viewModel: UserViewModel
 ) {
+    val context = LocalContext.current
     Scaffold(
-        topBar = { HomeTopAppBar(navController, viewModel) },
+        topBar = { HomeTopAppBar(viewModel, context) },
         content = { HomeContainer(navController, viewModel) }
     )
 }
 
 @Composable
-fun HomeTopAppBar(navController: NavHostController, viewModel: UserViewModel) {
+fun HomeTopAppBar(viewModel: UserViewModel, context: Context) {
     TopAppBar(
         elevation = 0.dp,
         backgroundColor = Color.White,
@@ -57,20 +56,9 @@ fun HomeTopAppBar(navController: NavHostController, viewModel: UserViewModel) {
         },
         navigationIcon = {
             // Icono de navegación y su acción
-            Image(
-                painter = painterResource(id = R.drawable.baseline_chevron_left_24),
-                contentDescription = "image",
-                modifier = Modifier
-                    .padding(15.dp, 0.dp, 0.dp, 0.dp)
-                    .size(20.dp, 30.dp)
-                    .clickable(
-                        indication = rememberRipple(bounded = false),
-                        interactionSource = remember { MutableInteractionSource() }) {
-                        // Acción al hacer clic en el icono: regresar a la pantalla anterior.
-                        navController.popBackStack()
-                    },
-                colorFilter = ColorFilter.tint(Color.Black)
-            )
+            IconButton(onClick = { (context as Activity).finish() }) {
+                Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+            }
         },
         actions = {
             // Ícono de menú desplegable
