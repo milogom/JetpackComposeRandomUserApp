@@ -26,12 +26,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             // Inicialización del NavController para usar con Jetpack Compose.
             navController = rememberNavController()
-
             // Llamada a la función del ViewModel para obtener datos de usuario.
             viewModel.getAllUser()
-
             SetupNavGraph(navController = navController, viewModel = viewModel)
-
         }
     }
 }

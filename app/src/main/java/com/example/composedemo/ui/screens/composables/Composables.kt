@@ -43,7 +43,7 @@ fun CardTexts(label: String, content: String) {
         text = label,
         style = MaterialTheme.typography.caption,
         fontFamily = fontOpenSansRegular,
-        color = Color.DarkGray
+        color = Color.LightGray
     )
     Text(
         text = content,
@@ -257,4 +257,18 @@ fun UserRow(user: User, viewModel: UserViewModel, navController: NavHostControll
         color = Color.LightGray,
         thickness = 1.dp
     )
+}
+
+@Composable
+fun SplashScreen() {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_splash_icon),
+            contentDescription = "Logo de la aplicación",
+            modifier = Modifier.size(1080.dp)
+        )
+    }
 }

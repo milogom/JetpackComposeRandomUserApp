@@ -18,16 +18,8 @@ val fontOswaldSemiBold = FontFamily(
     Font(R.font.oswaldsemibold, FontWeight.Normal)
 )
 
-val fontHeeboMedium = FontFamily(
-    Font(R.font.heebomedium, FontWeight.Normal)
-)
-
 val fontOpenSansRegular = FontFamily(
     Font(R.font.opensansregular)
-)
-
-val fontOpenSansMedium = FontFamily(
-    Font(R.font.opensansmedium)
 )
 
 val fontOpenSansSemibold = FontFamily(
