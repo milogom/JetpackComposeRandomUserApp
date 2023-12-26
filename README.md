@@ -14,6 +14,7 @@ https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/c35796df-1
 + Duplicated registers control.
 + Functional real time search engine with clean function when close
 + Hilt dependency injection.
++ Database Junit test, with Mockito and Retrofit Mock
 + Coil (for image loading and caching).
 + Kotlin coroutines.
 + Sealed class.
@@ -42,8 +43,7 @@ https://github.com/milogom/JetpackComposeRandomUserApp/assets/6615507/c35796df-1
 
 
 # Pending
-+ Database unit test
-
++ Please feel free to suggest improvements
 
 
 
